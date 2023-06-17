@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+<Configuration status="INFO">
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%{hh:mm:ss} %5p [%c] %m%n" />
+            <PatternLayout pattern="%d{hh:mm:ss} %5p [%c] %m%n" />
         </Console>
     </Appenders>
-    <Loggers>
-        <Logger name="org.springframework" level="INFO" additivity="false">
+    <loggers>
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appenderRef ref="console" />
+        </logger>
+        <logger name="org.lsm" level="INFO" additivity="false">
+            <appenderRef ref="console" />
+        </logger>
+        <root level="INFO" additivity="false">
             <AppenderRef ref="console" />
-        </Logger>
-        <Logger name="org.lsm" level="INFO" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
-        <Root level="INFO">
-            <AppenderRef ref="console" />
-        </Root>
-    </Loggers>
+        </root>
+    </loggers>
 </Configuration>
