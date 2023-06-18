@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    1. <mapper> 태그의 namespace 속성을 '반드시' 매퍼 인터페이스의 이름과 동일하게 지정해야한다.
+    2. <select> 태그는 반드시 resultType이나 resultMap이라는 속성을 지정해야한다.
+    3. 이 설정들을 root-context.xml에 있는 MyBatis 설정에서 xml 파일들을 인식할 수 있도록 설정해줘야한다.
+-->
+<mapper namespace="org.lsm.spring01.mapper.TimeMapper02">
+    <select id="getNow" resultType="string">
+        select now()
+    </select>
+</mapper>
