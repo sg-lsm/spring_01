@@ -1,4 +1,8 @@
 package org.lsm.spring01.sample;
 
-public class SampleDAO {
+import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+public interface SampleDAO {
 }
