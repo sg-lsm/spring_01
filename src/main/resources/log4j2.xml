@@ -8,10 +8,13 @@
     </Appenders>
     <loggers>
         <logger name="org.springframework" level="INFO" additivity="false">
-            <appenderRef ref="console" />
+            <appender-ref ref="console" />
         </logger>
         <logger name="org.lsm" level="INFO" additivity="false">
-            <appenderRef ref="console" />
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.lsm.spring01.mapper" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
         </logger>
         <root level="INFO" additivity="false">
             <AppenderRef ref="console" />
