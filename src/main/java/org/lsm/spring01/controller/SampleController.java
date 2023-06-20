@@ -1,9 +1,11 @@
 package org.lsm.spring01.controller;
 
 import lombok.extern.log4j.Log4j2;
+import org.lsm.spring01.dto.TodoDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -48,5 +50,10 @@ public class SampleController {
     public void ex06(String p1, int p2){
         log.info("p1... " + p1);
         log.info("p2... " + p2);
+    }
+
+    @GetMapping("/ex07")
+    public void ex07(@ModelAttribute("dto")TodoDTO dto, Model model){
+        log.info(dto);
     }
 }
