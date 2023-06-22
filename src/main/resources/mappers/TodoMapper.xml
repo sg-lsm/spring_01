@@ -9,7 +9,7 @@
     </select>
     <!-- myBatis는 sql문의 value부분에 ? 대신 #{title}같이 파라미터를 처리한다. #{title}부분은 PreparedStatement로 변경되며 ?로 처리되고 주어진 객체의 getTitle()을 호출한다.   -->
     <insert id="insert">
-        insert into tbl_todo(title, localDate, writer) values(#{title}, #{localDate}, #{writer})
+        insert into tbl_todo (title, localDate, writer) values (#{title}, #{localDate}, #{writer})
     </insert>
 
 </mapper>

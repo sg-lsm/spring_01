@@ -5,6 +5,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @Builder
 @ToString
 @AllArgsConstructor
@@ -13,6 +14,6 @@ public class TodoVO {
     private Long tno;
     private String title;
     private LocalDate localDate;
-    private String writer;
     private boolean finished;
+    private String writer;
 }

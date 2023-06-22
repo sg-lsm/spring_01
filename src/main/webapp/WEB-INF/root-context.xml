@@ -6,6 +6,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
+    <mybatis:scan base-package="org.lsm.spring01.mapper"></mybatis:scan>
+
     <context:component-scan base-package="org.lsm.spring01.config" />
     <context:component-scan base-package="org.lsm.spring01.service" />
 
@@ -31,6 +33,5 @@
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <constructor-arg ref="hikariConfig" />
     </bean>
-    <mybatis:scan base-package="org.lsm.spring01.mapper" />
 
 </beans>

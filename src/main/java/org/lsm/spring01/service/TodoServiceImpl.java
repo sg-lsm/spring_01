@@ -2,6 +2,7 @@ package org.lsm.spring01.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.Test;
 import org.lsm.spring01.domain.TodoVO;
 import org.lsm.spring01.dto.TodoDTO;
 import org.lsm.spring01.mapper.TodoMapper;
@@ -17,7 +18,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void register(TodoDTO dto){
-        log.info(modelMapper);
+        log.info(dto);
         TodoVO vo = modelMapper.map(dto, TodoVO.class);
         log.info(vo);
         todoMapper.insert(vo);
