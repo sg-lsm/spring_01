@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -30,5 +31,18 @@ public class MapperTodoTest {
                 .writer("user00")
                 .build();
         mapper.insert(vo);
+    }
+
+    @Test
+    public void testSelectAll(){
+        List<TodoVO> voList = mapper.selectAll();
+        voList.forEach(log::info);
+        voList.forEach(v->log.info(v.getTitle()));
+    }
+
+    @Test
+    public void testSelectOne(){
+        TodoVO vo = mapper.selectOne(4L);
+        log.info(vo);
     }
 }

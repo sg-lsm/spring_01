@@ -12,4 +12,12 @@
         insert into tbl_todo (title, localDate, writer) values (#{title}, #{localDate}, #{writer})
     </insert>
 
+    <select id="selectAll" resultType="org.lsm.spring01.domain.TodoVO">
+        select * from tbl_todo order by tno
+    </select>
+
+    <select id="selectOne" resultType="org.lsm.spring01.domain.TodoVO">
+        select * from tbl_todo where tno = #{tno}
+    </select>
+
 </mapper>

@@ -9,6 +9,9 @@ import org.lsm.spring01.mapper.TodoMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -22,6 +25,21 @@ public class TodoServiceImpl implements TodoService{
         TodoVO vo = modelMapper.map(dto, TodoVO.class);
         log.info(vo);
         todoMapper.insert(vo);
+    }
+
+    @Override
+    public List<TodoDTO> getAll(){
+        List<TodoDTO> dtoList = todoMapper.selectAll().stream()
+                .map(vo->modelMapper.map(vo, TodoDTO.class))
+                .collect(Collectors.toList());
+        return dtoList;
+    }
+
+    @Override
+    public TodoDTO getOne(Long tno){
+        TodoVO vo = todoMapper.selectOne(tno);
+        TodoDTO dto = modelMapper.map(vo, TodoDTO.class);
+        return dto;
     }
 }
 
