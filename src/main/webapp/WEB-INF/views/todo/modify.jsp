@@ -95,6 +95,7 @@
                     <script>
 
                         const formObj = document.querySelector("._form")
+                        const serverValidResult = {}
 
                         document.querySelector(".btn-danger").addEventListener("click", function(e) {
                         e.preventDefault()
@@ -103,6 +104,26 @@
                         formObj.method="post"
                         formObj.submit()
                         }, false);
+
+                        document.querySelector(".btn-primary").addEventListener("click", function(e) { e.preventDefault()
+                            e.stopPropagation()
+                            formObj.action = "/todo/modify"
+                            formObj.method = "post"
+                            formObj.submit()
+                            },false);
+
+                        document.querySelector(".btn-secondary").addEventListener("click", function(e) {
+                            e.preventDefault()
+                            e.stopPropagation()
+
+                            self.location="/todo/list";
+                            }, false);
+
+                        <c:forEach items="${errors}" var="error">
+                            serverValidResult['${error.getField()}'] = '${error.defaultMessage}'
+                        </c:forEach>
+
+                        console.log(serverValidResult)
 
                     </script>
 

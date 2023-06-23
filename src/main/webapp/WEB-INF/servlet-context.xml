@@ -24,6 +24,7 @@
         <property name="formatters">
             <set>
                 <bean class="org.lsm.spring01.controller.formatter.LocalDateFormatter" />
+                <bean class="org.lsm.spring01.controller.formatter.CheckboxFormatter" />
             </set>
         </property>
     </bean>
