@@ -45,4 +45,10 @@ public class MapperTodoTest {
         TodoVO vo = mapper.selectOne(4L);
         log.info(vo);
     }
+
+    @Test
+    public void test01(){
+        mapper.delete(6L);
+        log.info(mapper.selectAll());
+    }
 }

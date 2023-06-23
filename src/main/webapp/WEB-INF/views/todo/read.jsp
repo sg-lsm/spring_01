@@ -68,11 +68,11 @@
                             <input type="text" name="title" class="form-control" value='<c:out value="${dto.title}"></c:out>' readonly />
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">TNO</span>
+                            <span class="input-group-text">LocalDate</span>
                             <input type="text" name="localDate" class="form-control" value='<c:out value="${dto.localDate}"></c:out>' readonly />
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">TNO</span>
+                            <span class="input-group-text">Writer</span>
                             <input type="text" name="writer" class="form-control" value='<c:out value="${dto.writer}"></c:out>' readonly />
                         </div>
                         <div class="form-check">
@@ -87,6 +87,14 @@
                                 <button type="button" class="btn btn-secondary">List</button>
                             </div>
                         </div>
+
+                        <script>
+
+                            document.querySelector(".btn-primary").addEventListener("click", function(e){ self.location = "/todo/modify?tno="+${dto.tno} }, false)
+                            document.querySelector(".btn-secondary").addEventListener("click", function(e){ self.location = "/todo/list"; }, false)
+
+                        </script>
+
                     </div>
                 </div>
             </div>

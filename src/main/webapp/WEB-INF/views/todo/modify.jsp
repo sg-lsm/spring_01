@@ -59,30 +59,53 @@
             <div class="col">
                 <div class="card" >
                     <div class="card-body">
-                        <h5 class="card-title">special title treatment</h5>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th score="col">Tno</th>
-                                    <th score="col">Title</th>
-                                    <th score="col">Writer</th>
-                                    <th score="col">LocalDate</th>
-                                    <th score="col">Finished</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${dtoList}" var="dto">
-                                <tr>
-                                    <th score="row"><c:out value="${dto.tno}" /></th>
-                                    <td><a href="/todo/read?tno=${dto.tno}" class="text-decoration-none"><c:out value="${dto.title}" /> </a></td>
-                                    <td><c:out value="${dto.writer}" /></td>
-                                    <td><c:out value="${dto.localDate}" /></td>
-                                    <td><c:out value="${dto.finished}" /></td>
-                                </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                    <form action="/todo/modify" class="_form" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">TNO</span>
+                            <input type="text" name="tno" class="form-control" value='<c:out value="${dto.tno}"></c:out>' readonly />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Title</span>
+                            <input type="text" name="title" class="form-control" value='<c:out value="${dto.title}"></c:out>' />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">LocalDate</span>
+                            <input type="text" name="localDate" class="form-control" value='<c:out value="${dto.localDate}"></c:out>' />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Writer</span>
+                            <input type="text" name="writer" class="form-control" value='<c:out value="${dto.writer}"></c:out>' readonly />
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                Finished &nbsp;
+                            </label>
+                            <input class="form-check-input" type="checkbox" name="finished" ${dto.finished ? "checked" : ""} />
+                        </div>
+                        <div class="my-4">
+                            <div class="float-end">
+                                <button type="button" class="btn btn-danger">Remove</button>
+                                <button type="button" class="btn btn-primary">Modify</button>
+                                <button type="button" class="btn btn-secondary">List</button>
+                            </div>
+                        </div>
+                        </form>
                     </div>
+
+                    <script>
+
+                        const formObj = document.querySelector("._form")
+
+                        document.querySelector(".btn-danger").addEventListener("click", function(e) {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        formObj.action="/todo/remove"
+                        formObj.method="post"
+                        formObj.submit()
+                        }, false);
+
+                    </script>
+
                 </div>
             </div>
         </div>

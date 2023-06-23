@@ -41,6 +41,11 @@ public class TodoServiceImpl implements TodoService{
         TodoDTO dto = modelMapper.map(vo, TodoDTO.class);
         return dto;
     }
+
+    @Override
+    public void remove(Long tno){
+        todoMapper.delete(tno);
+    }
 }
 
 // DI를 이용해 DB처리하는 #TodoMapper와 #DTO를, VO의 변환을 처리하는 #ModelMapper를 주입.
