@@ -89,6 +89,8 @@
                                 <button type="button" class="btn btn-secondary">List</button>
                             </div>
                         </div>
+                        <input type="hidden" name="page" value="${pageRequestDTO.page}" />
+                        <input type="hidden" name="size" value="${pageRequestDTO.size}" />
                         </form>
                     </div>
 
@@ -116,7 +118,7 @@
                             e.preventDefault()
                             e.stopPropagation()
 
-                            self.location="/todo/list";
+                            self.location=`/todo/list?${pageRequestDTO.link}`;
                             }, false);
 
                         <c:forEach items="${errors}" var="error">

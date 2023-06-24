@@ -74,7 +74,7 @@
                                 <c:forEach items="${resDTO.dtoList}" var="dto">
                                 <tr>
                                     <th score="row"><c:out value="${dto.tno}" /></th>
-                                    <td><a href="/todo/read?tno=${dto.tno}" class="text-decoration-none"><c:out value="${dto.title}" /> </a></td>
+                                    <td><a href="/todo/read?tno=${dto.tno}&${pageRequestDTO.link}" class="text-decoration-none" data-tno="${dto.tno}"><c:out value="${dto.title}" /> </a></td>
                                     <td><c:out value="${dto.writer}" /></td>
                                     <td><c:out value="${dto.localDate}" /></td>
                                     <td><c:out value="${dto.finished}" /></td>

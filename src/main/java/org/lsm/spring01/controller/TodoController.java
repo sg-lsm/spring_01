@@ -59,24 +59,27 @@ public class TodoController {
     }
 
     @GetMapping({"/read", "/modify"})
-    public void read(Long tno, Model model){
-        TodoDTO dto = service.getOne(tno);
-        log.info(dto);
-        model.addAttribute("dto", dto);
+    public void read(Long tno,PageRequestDTO pageRequestDTO, Model model){
+        TodoDTO todoDTO = service.getOne(tno);
+        log.info(todoDTO);
+        model.addAttribute("dto", todoDTO);
     }
 
     @PostMapping("/remove")
-    public String remove(Long tno, RedirectAttributes redirectAttributes) {
+    public String remove(Long tno,PageRequestDTO reqDTO, RedirectAttributes redirectAttributes) {
         log.info("----remove----");
         log.info("tno : " + tno);
 
         service.remove(tno);
 
+        redirectAttributes.addAttribute("page", 1);
+        redirectAttributes.addAttribute("size", reqDTO.getSize());
+
         return "redirect:/todo/list";
     }
 
     @PostMapping("/modify")
-    public String modify(@Valid TodoDTO dto, RedirectAttributes redirectAttributes, BindingResult bindingResult){
+    public String modify(@Valid TodoDTO dto, RedirectAttributes redirectAttributes, BindingResult bindingResult, PageRequestDTO reqDTO){
         if(bindingResult.hasErrors()){
             log.info("bindingResult Error...");
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
@@ -85,6 +88,10 @@ public class TodoController {
         }
         log.info(dto);
         service.modify(dto);
+
+        redirectAttributes.addAttribute("page", reqDTO.getPage());
+        redirectAttributes.addAttribute("size", reqDTO.getSize());
+
         return "redirect:/todo/list";
     }
 }
