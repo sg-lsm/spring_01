@@ -4,6 +4,8 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.lsm.spring01.domain.TodoVO;
+import org.lsm.spring01.dto.PageRequestDTO;
+import org.lsm.spring01.dto.PageResponseDTO;
 import org.lsm.spring01.dto.TodoDTO;
 import org.lsm.spring01.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +31,14 @@ public class TodoServiceTest {
         log.info(dto);
         service.register(dto);
     }
+
+    @Test
+    public void testPagination(){
+        PageRequestDTO reqDTO = PageRequestDTO.builder().page(1).size(10).build();
+        PageResponseDTO<TodoDTO> resDTO = service.getList(reqDTO);
+        log.info(resDTO);
+        log.info(resDTO.getTotal());
+        resDTO.getDtoList().stream().forEach(log::info);
+    }
+
 }

@@ -2,6 +2,7 @@ package org.lsm.spring01.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.lsm.spring01.dto.PageRequestDTO;
 import org.lsm.spring01.dto.TodoDTO;
 import org.lsm.spring01.service.TodoService;
 import org.springframework.http.HttpRequest;
@@ -24,10 +25,13 @@ public class TodoController {
 
     private final TodoService service;
 
-    @RequestMapping("/list")
-    public void list(Model model){
-        log.info("list here");
-        model.addAttribute("dtoList", service.getAll());
+    @GetMapping("/list")
+    public void list(@Valid PageRequestDTO requestDTO, BindingResult bindingResult, Model model){
+        log.info(requestDTO);
+        if(bindingResult.hasErrors()){
+            requestDTO = PageRequestDTO.builder().build();
+        }
+        model.addAttribute("resDTO", service.getList(requestDTO));
     }
 
 //    @RequestMapping(value = "/register", method = RequestMethod.GET)

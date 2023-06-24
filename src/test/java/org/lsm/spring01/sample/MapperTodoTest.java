@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.lsm.spring01.domain.TodoVO;
+import org.lsm.spring01.dto.PageRequestDTO;
 import org.lsm.spring01.mapper.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -51,4 +52,17 @@ public class MapperTodoTest {
         mapper.delete(6L);
         log.info(mapper.selectAll());
     }
+
+    @Test
+    public void testSelectList(){
+        PageRequestDTO dto = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+
+        List<TodoVO> voList = mapper.selectList(dto);
+        voList.forEach(log::info);
+    }
+
+
 }

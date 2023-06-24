@@ -28,4 +28,11 @@
         update tbl_todo set title=#{title}, localDate=#{localDate}, finished=#{finished} where tno=#{tno}
     </update>
 
+    <select id="selectList" resultType="org.lsm.spring01.domain.TodoVO">
+        select * from tbl_todo order by tno limit #{skip}, #{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(tno) from tbl_todo
+    </select>
 </mapper>
