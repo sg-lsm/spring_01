@@ -2,3 +2,10 @@
 
 #### register 개발 흐름 :: TodoMapper => TodoService => TodoController => JSP
 
+````
+/todo/list
+/todo/list?page=8
+/todo/regist
+/todo/read?tno=1
+/todo/modify?tno=1
+````
