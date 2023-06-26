@@ -64,5 +64,22 @@ public class MapperTodoTest {
         voList.forEach(log::info);
     }
 
+    @Test
+    public void testSelectSearch(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .types(new String[] {"t", "w"})
+                .keyword("AAAA")
+//                .finished(true)
+                .from(LocalDate.of(2023,10,10))
+                .to(LocalDate.of(2023,12,12))
+                .build();
+
+        List<TodoVO> voList = mapper.selectList(pageRequestDTO);
+
+        voList.forEach(log::info);
+        log.info(mapper.getCount(pageRequestDTO));
+    }
 
 }

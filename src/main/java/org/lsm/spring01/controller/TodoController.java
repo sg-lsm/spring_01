@@ -66,32 +66,36 @@ public class TodoController {
     }
 
     @PostMapping("/remove")
-    public String remove(Long tno,PageRequestDTO reqDTO, RedirectAttributes redirectAttributes) {
+    public String remove(Long tno,PageRequestDTO reqDTO, RedirectAttributes redirectAttributes, PageRequestDTO pageRequestDTO) {
         log.info("----remove----");
         log.info("tno : " + tno);
 
         service.remove(tno);
 
-        redirectAttributes.addAttribute("page", 1);
-        redirectAttributes.addAttribute("size", reqDTO.getSize());
+//        redirectAttributes.addAttribute("page", 1);
+//        redirectAttributes.addAttribute("size", reqDTO.getSize());
 
-        return "redirect:/todo/list";
+        return "redirect:/todo/list?" + pageRequestDTO.getLink();
     }
 
     @PostMapping("/modify")
     public String modify(@Valid TodoDTO dto, RedirectAttributes redirectAttributes, BindingResult bindingResult, PageRequestDTO reqDTO){
+
         if(bindingResult.hasErrors()){
             log.info("bindingResult Error...");
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
             redirectAttributes.addAttribute("tno", dto.getTno());
             return "redirect:/todo/modify";
         }
+
         log.info(dto);
         service.modify(dto);
 
-        redirectAttributes.addAttribute("page", reqDTO.getPage());
-        redirectAttributes.addAttribute("size", reqDTO.getSize());
+//        redirectAttributes.addAttribute("page", reqDTO.getPage());
+//        redirectAttributes.addAttribute("size", reqDTO.getSize());
 
-        return "redirect:/todo/list";
+        redirectAttributes.addAttribute("tno", dto.getTno());
+
+        return "redirect:/todo/read";
     }
 }
